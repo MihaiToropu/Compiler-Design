@@ -1,5 +1,5 @@
 /* Imported packages */
-
+/*generate cup*/
 import java_cup.runtime.*;
 
 /* Parser code to change the way the parser reports errors (include
@@ -137,6 +137,8 @@ declaration ::= var_declaration
 			
 var_declaration ::= type_specifier id SEMI
 				| type_specifier id LSQBKT NUMERIC_CONSTANT RSQBKT SEMI
+				| type_specifier id EQL NUMERIC_CONSTANT SEMI
+				| type_specifier id EQL id SEMI
 				;
 			
 type_specifier ::= INT
@@ -245,5 +247,4 @@ arg_list ::= arg_list COMMA expression
 		 ;
 
 id ::= ID
-   | NUMERIC_CONSTANT
    ;

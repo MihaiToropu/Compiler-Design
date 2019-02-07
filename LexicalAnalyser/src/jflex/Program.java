@@ -58,15 +58,15 @@ public class Program {
         FileReader inputFile;
         try {
 
-            /*inputFile = new FileReader(new File("input.txt"));
+            inputFile = new FileReader(new File("input.txt"));
             BufferedReader br = new BufferedReader(inputFile);
             LexerCMinus l = new LexerCMinus (br);
-            parser p = new parser(l);*/
-            parser p = new parser(new LexerCMinus(new FileReader(new File("input.txt"))));
+            parser p = new parser(l);
+            //parser p = new parser(new LexerCMinus(new FileReader(new File("input.txt"))));
 
             p.debug_parse();
 
-            /*try {
+            try {
                 Symbol sCrt;
                 do
                 {
@@ -80,7 +80,7 @@ public class Program {
                 System.out.println("EOF");
             } catch (IOException e) {
                 e.printStackTrace();
-            }*/
+            }
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

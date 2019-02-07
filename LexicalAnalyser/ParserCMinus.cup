@@ -1,0 +1,244 @@
+/* Imported packages */
+
+import java_cup.runtime.*;
+
+/* Parser code to change the way the parser reports errors (include
+   line and column number of the error). */
+parser code {: 
+  LexerCMinus lexer;
+
+  public parser(LexerCMinus lexer) { 
+    this.lexer = lexer; 
+  }
+
+  public void report_error(String message, Object info) {
+
+    StringBuffer m = new StringBuffer("Error");
+
+    if (info instanceof java_cup.runtime.Symbol) {
+
+      java_cup.runtime.Symbol s = ((java_cup.runtime.Symbol) info);
+
+      if (s.left >= 0) {
+
+        m.append(" in line "+(s.left+1));
+
+        if (s.right >= 0)
+
+          m.append(", column "+(s.right+1));
+        }
+    }
+
+    m.append(" : "+message);
+
+    System.err.println(m);
+  }
+
+  public void report_fatal_error(String message, Object info) {
+    report_error(message, info);
+    System.exit(1);
+    }
+:}; 
+
+
+/* define how to connect to the scanner! */
+scan with {: return lexer.next_token(); :};
+
+	
+/* ------------ Declaration of Terminals and Non Terminals Section ----------- */
+
+/*--------Terminals--------*/
+
+/* Keywords */
+terminal ELSE, IF, INT, RETURN, VOID, WHILE;
+
+/*Operators*/
+terminal ADD, SUB, MULT, DIV, LT, GT, LTOET, GTOET, DEQL, NOTEQL, EQL, SEMI,
+		COMMA, LPAREN, RPAREN, LSQBKT,RSQBKT, LBRKT, RBRKT;
+
+/*Identifier*/
+terminal String ID;
+
+/*Numeric constant*/
+terminal Integer NUMERIC_CONSTANT;
+
+/*White space*/
+terminal WHITESPACE;
+
+/*String*/
+terminal String STRING;
+
+/*Literals*/
+/*terminal Integer INTLITERAL;*/
+
+/*--------Non-Terminals--------*/
+
+non terminal program;
+non terminal declaration_list;
+non terminal declaration;
+non terminal var_declaration;
+non terminal type_specifier;
+non terminal fun_declaration;
+non terminal params;
+non terminal param_list;
+non terminal param;
+non terminal compound_stmt;
+non terminal local_declarations;
+non terminal statement_list;
+non terminal statement;
+non terminal expression_stmt;
+non terminal selection_stmt;
+non terminal iteration_stmt;
+non terminal return_stmt;
+non terminal expression;
+non terminal var;
+non terminal simple_expression;
+non terminal relop;
+non terminal additive_expression;
+non terminal addop;
+non terminal term;
+non terminal mulop;
+non terminal factor;
+non terminal call;
+non terminal args;
+non terminal arg_list;
+
+
+
+
+
+/* -------------Precedence and Associatively of Terminals Section----------- */
+
+
+precedence nonassoc EQL, NOTEQL, LT, GT, LTOET, GTOET;
+precedence left ADD, SUB;
+precedence left MULT, DIV;
+precedence left ELSE;
+precedence right NOTEQL;
+
+start with program;
+
+
+
+/* ---------------------------- Grammar Section ------------------------------ */
+
+program ::= declaration_list
+		|
+		;
+
+declaration_list ::= declaration_list declaration
+				 | declaration
+				 ;
+
+declaration ::= var_declaration
+			| fun_declaration
+			;
+			
+var_declaration ::= type_specifier ID SEMI
+				| type_specifier ID LSQBKT NUMERIC_CONSTANT RSQBKT SEMI
+				;
+			
+type_specifier ::= INT
+			   | VOID
+			   ;
+			 
+fun_declaration ::= type_specifier ID LPAREN params RPAREN compound_stmt
+				;
+
+params ::= param_list
+	   | VOID
+	   ;
+	  
+param_list ::= param_list COMMA param
+		   | param
+		   ;
+		   
+param ::= type_specifier ID
+	  | type_specifier ID LSQBKT RSQBKT
+	  ;
+	  
+compound_stmt ::= LBRKT local_declarations statement_list RBRKT
+			  ;
+
+local_declarations ::= local_declarations var_declaration
+				   |
+				   ;
+				   
+statement_list ::= statement_list statement
+			   |
+			   ;
+			   
+statement ::= expression_stmt
+		  | compound_stmt
+		  | selection_stmt
+		  | iteration_stmt
+		  | return_stmt
+		  ;
+		  
+expression_stmt ::= expression SEMI
+				| SEMI
+				;
+				
+selection_stmt ::= IF LPAREN expression RPAREN statement
+			   | IF LPAREN expression RPAREN statement ELSE statement
+			   ;
+			   
+iteration_stmt ::= WHILE LPAREN expression RPAREN statement
+			   ;
+			   
+return_stmt ::= RETURN SEMI
+			| RETURN expression SEMI
+			;
+			
+expression ::= var EQL expression
+		   | simple_expression
+		   ;
+		   
+var ::= ID
+    | ID LSQBKT expression RSQBKT
+	;
+	
+simple_expression ::= additive_expression relop additive_expression
+				  | additive_expression
+				  ;
+				  
+relop ::= LTOET
+	  | LT
+	  | GT
+	  | GTOET
+	  | DEQL
+	  | NOTEQL
+	  ;
+	  
+additive_expression ::= additive_expression addop term
+				    | term
+					;
+					
+addop ::= ADD
+	  | SUB
+	  ;
+	  
+term ::= term mulop factor
+	 | factor
+	 ;
+	 
+mulop ::= MULT
+	  | DIV
+	  ;
+	  
+factor ::= LPAREN expression RPAREN
+	   | var
+	   | call
+	   | NUMERIC_CONSTANT
+	   ;
+	   
+call ::= ID LPAREN args RPAREN
+	 ;
+	 
+args ::= arg_list
+	 |
+	 ;
+	 
+arg_list ::= arg_list COMMA expression
+		 | expression
+		 ;

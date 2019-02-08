@@ -6,69 +6,65 @@ package jflex;
 /** CUP generated class containing symbol constants. */
 public interface sym {
   /* terminals */
-  public static final int LT = 12;
-  public static final int ELSE = 2;
-  public static final int EQL = 18;
-  public static final int RPAREN = 22;
-  public static final int INT = 4;
-  public static final int SEMI = 19;
-  public static final int WHILE = 7;
-  public static final int DEQL = 16;
-  public static final int RETURN = 5;
-  public static final int IF = 3;
-  public static final int LPAREN = 21;
-  public static final int GT = 13;
-  public static final int ID = 27;
-  public static final int NUMERIC_CONSTANT = 28;
-  public static final int RSQBKT = 24;
-  public static final int SUB = 9;
-  public static final int STRING = 30;
-  public static final int RBRKT = 26;
-  public static final int COMMA = 20;
+  public static final int NEQUIV = 20;
+  public static final int ELSE = 5;
+  public static final int PLUS = 10;
+  public static final int RPAREN = 24;
+  public static final int SEMI = 21;
+  public static final int WHILE = 6;
+  public static final int RCURLY = 28;
+  public static final int EQUALEQUAL = 19;
+  public static final int RETURN = 9;
+  public static final int GREATER = 16;
+  public static final int IF = 4;
+  public static final int LPAREN = 23;
+  public static final int ID = 2;
+  public static final int NUM = 3;
+  public static final int LCURLY = 27;
+  public static final int COMMA = 22;
   public static final int EOF = 0;
-  public static final int MULT = 10;
-  public static final int DIV = 11;
-  public static final int ADD = 8;
-  public static final int LSQBKT = 23;
+  public static final int DIV = 13;
+  public static final int LSQUARE = 25;
+  public static final int MINUS = 11;
   public static final int error = 1;
-  public static final int GTOET = 15;
-  public static final int NOTEQL = 17;
-  public static final int LTOET = 14;
-  public static final int LBRKT = 25;
-  public static final int VOID = 6;
-  public static final int WHITESPACE = 29;
+  public static final int GEQUIV = 18;
+  public static final int EQ = 14;
+  public static final int RSQUARE = 26;
+  public static final int LEQUIV = 17;
+  public static final int INTEGER = 7;
+  public static final int MUL = 12;
+  public static final int VOID = 8;
+  public static final int LESS = 15;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
-  "ELSE",
+  "ID",
+  "NUM",
   "IF",
-  "INT",
-  "RETURN",
-  "VOID",
+  "ELSE",
   "WHILE",
-  "ADD",
-  "SUB",
-  "MULT",
+  "INTEGER",
+  "VOID",
+  "RETURN",
+  "PLUS",
+  "MINUS",
+  "MUL",
   "DIV",
-  "LT",
-  "GT",
-  "LTOET",
-  "GTOET",
-  "DEQL",
-  "NOTEQL",
-  "EQL",
+  "EQ",
+  "LESS",
+  "GREATER",
+  "LEQUIV",
+  "GEQUIV",
+  "EQUALEQUAL",
+  "NEQUIV",
   "SEMI",
   "COMMA",
   "LPAREN",
   "RPAREN",
-  "LSQBKT",
-  "RSQBKT",
-  "LBRKT",
-  "RBRKT",
-  "ID",
-  "NUMERIC_CONSTANT",
-  "WHITESPACE",
-  "STRING"
+  "LSQUARE",
+  "RSQUARE",
+  "LCURLY",
+  "RCURLY"
   };
 }
 

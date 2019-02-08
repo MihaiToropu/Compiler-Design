@@ -1,0 +1,61 @@
+---------- .ast.cm Abstract Syntax Tree ----------
+
+FunctionDec: Name: getSmallest, Type: INT
+    Params:
+        SimpleDec: Name: a, Type: INT
+        SimpleDec: Name: b, Type: INT
+        SimpleDec: Name: c, Type: INT
+    CompoundExp:
+        SimpleDec: Name: smallest, Type: INT
+        AssignExp:
+            SimpleVar: smallest
+            VarExp:
+                SimpleVar: a
+        IfExp:
+            OpExp: <
+                VarExp:
+                    SimpleVar: b
+                VarExp:
+                    SimpleVar: smallest
+            AssignExp:
+                SimpleVar: smallest
+                VarExp:
+                    SimpleVar: b
+            NilExp
+        IfExp:
+            OpExp: <
+                VarExp:
+                    SimpleVar: c
+                VarExp:
+                    SimpleVar: smallest
+            AssignExp:
+                SimpleVar: smallest
+                VarExp:
+                    SimpleVar: c
+            NilExp
+        ReturnExp:
+            VarExp:
+                SimpleVar: smallest
+FunctionDec: Name: main, Type: VOID
+    Params:
+    CompoundExp:
+        SimpleDec: Name: x, Type: INT
+        SimpleDec: Name: y, Type: INT
+        SimpleDec: Name: z, Type: INT
+        AssignExp:
+            SimpleVar: x
+            IntExp:10
+        AssignExp:
+            SimpleVar: y
+            IntExp:6
+        AssignExp:
+            SimpleVar: z
+            IntExp:12
+        CallExp: output
+            CallExp: getSmallest
+                VarExp:
+                    SimpleVar: x
+                VarExp:
+                    SimpleVar: y
+                VarExp:
+                    SimpleVar: z

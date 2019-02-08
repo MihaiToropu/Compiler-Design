@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="java-cup-11b-runtime1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Lexical Analyser/java-cup-11b-runtime.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Lexical Analyser/java-cup-11b.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Lexical Analyser/jflex-full-1.7.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,19 @@
+---------- .sym.cm Symbol Table ----------
+
+<< ENTER SCOPE 0 >>
+    << ENTER SCOPE 1 >>
+    Variable: INT a
+    Variable: INT b
+    Variable: INT c
+    Variable: INT smallest
+    << EXIT SCOPE 1 >>
+    << ENTER SCOPE 1 >>
+    Variable: INT x
+    Variable: INT y
+    Variable: INT z
+    << EXIT SCOPE 1 >>
+Function: VOID output (INT)
+Function: INT input ()
+Function: INT getSmallest (INT, INT, INT)
+Function: VOID main ()
+<< EXIT SCOPE 0 >>
